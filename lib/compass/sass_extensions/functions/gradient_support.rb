@@ -354,7 +354,6 @@ module Compass::SassExtensions::Functions::GradientSupport
         if stop.numerator_units == ["%"] && color_list.value.last.stop && color_list.value.last.stop.numerator_units == ["px"]
           stop = stop.times(color_list.value.last.stop).div(Sass::Script::Number.new(100, ["%"]))
         end
-        Compass::Logger.new.record(:warning, "Webkit only supports pixels for the start and end stops for radial gradients. Got: #{orig_stop}") if stop.numerator_units != ["px"]
         stop.div(Sass::Script::Number.new(1, stop.numerator_units, stop.denominator_units))
       elsif stop
         stop
